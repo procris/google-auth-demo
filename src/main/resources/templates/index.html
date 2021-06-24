@@ -32,7 +32,6 @@
 
     <script>
         function signInCallback(authResult) {
-            console.log("signInCallback call...")
             if (authResult['code']) {
                 $('#signinButton').attr('style', 'display: none');
 

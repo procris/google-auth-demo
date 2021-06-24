@@ -37,8 +37,6 @@ public class RestController {
 
         String accessToken = tokenResponse.getAccessToken();
 
-        System.out.println("Got access token " + accessToken);
-
         GoogleIdToken idToken = tokenResponse.parseIdToken();
         GoogleIdToken.Payload payload = idToken.getPayload();
         String userId = payload.getSubject();
@@ -49,9 +47,6 @@ public class RestController {
         String locale = (String) payload.get("locale");
         String familyName = (String) payload.get("family_name");
         String givenName = (String) payload.get("given_name");
-
-        System.out.println("Got profile email " + email + " and name " + name + " and givenName " + givenName);
-
         Result result = new Result(email, name);
         return result;
     }

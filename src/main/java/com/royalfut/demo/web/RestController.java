@@ -16,7 +16,7 @@ public class RestController {
 
     public static final String CLIENT_ID = "754137399246-qabm6770ckoo0puec4pibpbsh79pvi44.apps.googleusercontent.com";
     public static final String CLIENT_SECRET = "bsNTqgIBZ--F5EOfpuXee0k0";
-    public static final String REDIRECT_URI = "https://google-auth-royalfut.herokuapp.com/storeauthcode";
+    public static final String REDIRECT_URI = "https://google-auth-royalfut.herokuapp.com";
 
     @PostMapping(path = "/storeauthcode")
     public Result storeAuthCode(HttpServletRequest request, @RequestBody String authCode) throws IOException {

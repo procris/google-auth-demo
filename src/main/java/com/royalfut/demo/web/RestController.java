@@ -16,10 +16,10 @@ public class RestController {
 
     public static final String CLIENT_ID = "754137399246-qabm6770ckoo0puec4pibpbsh79pvi44.apps.googleusercontent.com";
     public static final String CLIENT_SECRET = "bsNTqgIBZ--F5EOfpuXee0k0";
-    public static final String REDIRECT_URI = "";
+    public static final String REDIRECT_URI = "https://google-auth-royalfut.herokuapp.com/";
 
     @PostMapping(path = "/storeauthcode")
-    public void storeAuthCode(HttpServletRequest request, @RequestBody String authCode) throws IOException {
+    public Result storeAuthCode(HttpServletRequest request, @RequestBody String authCode) throws IOException {
         System.out.println("Got requested authCode " + authCode);
         if (request.getHeader("X-Requested-With") == null) {
             // Without the `X-Requested-With` header, this request could be forged. Aborts.
@@ -52,5 +52,18 @@ public class RestController {
         String givenName = (String) payload.get("given_name");
 
         System.out.println("Got profile email " + email + " and name " + name + " and givenName " + givenName);
+
+        Result result = new Result(email, name);
+        return result;
+    }
+
+    public class Result {
+        public String email;
+        public String name;
+
+        public Result(String email, String name) {
+            this.email = email;
+            this.name = name;
+        }
     }
 }

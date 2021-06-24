@@ -18,7 +18,13 @@
 
 <div style="width: 20%; margin: auto; padding: 10px;">
     <button id="signinButton">Sign in with Google</button>
+    <div id="data">
+        Email:<input type="text" disabled="true" id="email"/><br/>
+        Name:<input type="text" disabled="true" id="name"/><br/>
+    </div>
+
     <script>
+        $("#data").hide();
         $('#signinButton').click(function () {
             auth2.grantOfflineAccess().then(signInCallback);
         });
@@ -26,6 +32,7 @@
 
     <script>
         function signInCallback(authResult) {
+            console.log("signInCallback call...")
             if (authResult['code']) {
                 $('#signinButton').attr('style', 'display: none');
 
@@ -37,7 +44,10 @@
                     },
                     contentType: 'application/octet-stream; charset=utf-8',
                     success: function (result) {
-                        // Handle or verify the server response.
+                        $("#data").show();
+                        $("#email").val(result.email);
+                        $("#name").val(result.name);
+
                     },
                     processData: false,
                     data: authResult['code']
